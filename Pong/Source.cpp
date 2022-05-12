@@ -64,24 +64,25 @@ void Draw() {
 
 }
 void Input() {
+	if(_kbhit()) {
 
-	switch (_getch())
-	{
+		switch (_getch())
+		{
 
-	case 'p':
-		y2--; break;
+		case 'p':
+			y2--; break;
 
-	case 'l':
-		y2++; break;
+		case 'l':
+			y2++; break;
 
-	case 'q':
-		y--; break;
+		case 'q':
+			y--; break;
 
-	case 'a':
-		y++; break;
-		break;
+		case 'a':
+			y++; break;
+			break;
+		}
 	}
-	
 	
 }
 
@@ -116,7 +117,7 @@ int main() {
 	setUp();
 	while (!gameOver) {
 		Draw();
-		//Input();
+		Input();
 		Logic();
 	}
 	
