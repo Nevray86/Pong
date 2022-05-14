@@ -2,7 +2,8 @@
 #include<conio.h>
 
 using namespace std;
-
+bool ridh_up = true, ridh_down = true;
+bool left_up = true, left_down = true;
 bool gameOver;
 const int width = 168; // ширина пол€
 const int height = 43; // высота пол€
@@ -12,8 +13,7 @@ int pl1 ; // рфкетка
 int pl2 ; // ракетка
 int bal_x = width / 2; //ккординатаа м€ча
 int bal_y = height / 2; // координата м€ча
-bool up_flag;
-bool left_flag,ridh_flad = true;
+
 int p1 = 0;
 int p2 = 0;
 
@@ -87,28 +87,66 @@ void Input() {
 }
 
 void Logic() {
-	if (left_flag) {
-		bal_x--;
-		bal_y;
+	if (ridh_down) {
+		bal_x++* (2);
+		bal_y++;
+		if (bal_y == height - 1) {
+			ridh_down = false;
+			ridh_up = true;
+		}
 	}
-	else if (ridh_flad) {
+	else if (ridh_up) {
 		bal_x++;
-		bal_y;
+		bal_y--;
+		if (bal_y == 5) {
+			ridh_up = false;
+			ridh_down = true;
+		}
+	}
+	else if (left_down) {
+		bal_x--;
+		bal_y++;
+		if (bal_y == height - 1) {
+			left_down = false;
+			left_up = true;
+		}
+	}
+	else if (left_up) {
+		bal_x--;
+		bal_y--;
+		if (bal_y == 5) {
+			left_up = false;
+			left_down = true;
+		}
 	}
 
-	
-	 if (bal_x == 0) {
+	if (bal_x == 0) {
 		p2++;
-		left_flag = false;
-		ridh_flad = true;
+		if (p2 == 5) {
+			gameOver = true;
+		}
+		bal_x = width / 2;
+		bal_y = height / 2;
+		ridh_down = true;
+		ridh_up = true;
+		left_down = false;
+		left_up = false;
 	}
-	
-	
-	 else if (bal_x == 166) {
-		 p1++;
-		 left_flag = true;
-		 ridh_flad = false;
-	 }
+	else if (bal_x == width) {
+		p1++;
+		if (p1 == 5) {
+			gameOver = true;
+		}
+
+		bal_x = width / 2;
+		bal_y = height / 2;
+		left_down = true;
+		left_up = true;
+		ridh_down = false;
+		ridh_up = false;
+		
+	}
+
 	
 }
 //00000000000000000000000000000000000000000000000000000000000000
