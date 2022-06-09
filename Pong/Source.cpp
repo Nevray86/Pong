@@ -4,7 +4,7 @@
 #include"Draw.h"
 #include"Draw_3.h"
 #include"Draw_2.h"
-
+// test
 
 int main() {
 	extern int start;
